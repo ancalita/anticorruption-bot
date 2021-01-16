@@ -14,8 +14,8 @@ for knowledge in os.listdir('base'):
     BotMemory = open('base/' + knowledge, 'r').readlines()
     trainer.train(BotMemory)
 
-corpus_trainer = ChatterBotCorpusTrainer(chatbot)
-corpus_trainer.train("chatterbot.corpus.english")
+# corpus_trainer = ChatterBotCorpusTrainer(chatbot)
+# corpus_trainer.train("chatterbot.corpus.english")
 
 app = Flask(__name__)
 
@@ -25,16 +25,9 @@ def bot():
     incoming_msg = request.values.get('Body', '').lower()
     response = MessagingResponse()
     msg = response.message()
-    responded = False
     bot_response = chatbot.get_response(incoming_msg)
+    msg.body(str(bot_response))
 
-    if bot_response:
-        msg.body(str(bot_response))
-        responded = True
-
-    if not responded:
-        msg.body('I did not understand your question. '
-                 'I only know about anticorruption laws, initiatives and orgs in Romania, sorry!')
     return str(response)
 
 
