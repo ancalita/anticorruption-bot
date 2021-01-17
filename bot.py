@@ -7,7 +7,9 @@ import os
 
 chatbot = ChatBot("Anticorruption",
                   read_only=True,
-                  logic_adapters=['chatterbot.logic.BestMatch'])
+                  logic_adapters=['chatterbot.logic.BestMatch'],
+                  database_uri=os.environ.get('DATABASE_URL'))
+
 trainer = ListTrainer(chatbot)
 
 for knowledge in os.listdir('base'):
