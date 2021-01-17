@@ -14,8 +14,8 @@ for knowledge in os.listdir('base'):
     BotMemory = open('base/' + knowledge, 'r').readlines()
     trainer.train(BotMemory)
 
-corpus_trainer = ChatterBotCorpusTrainer(chatbot)
-corpus_trainer.train("chatterbot.corpus.english")
+# corpus_trainer = ChatterBotCorpusTrainer(chatbot)
+# corpus_trainer.train("chatterbot.corpus.english")
 
 app = Flask(__name__)
 
