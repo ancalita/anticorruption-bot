@@ -14,13 +14,13 @@ for knowledge in os.listdir('base'):
     BotMemory = open('base/' + knowledge, 'r').readlines()
     trainer.train(BotMemory)
 
-# corpus_trainer = ChatterBotCorpusTrainer(chatbot)
-# corpus_trainer.train("chatterbot.corpus.english")
+corpus_trainer = ChatterBotCorpusTrainer(chatbot)
+corpus_trainer.train("chatterbot.corpus.english")
 
 app = Flask(__name__)
 
 
-@app.route("/bot", methods=["POST"])
+@app.route("/", methods=["POST"])
 def bot():
     incoming_msg = request.values.get('Body', '').lower()
     response = MessagingResponse()
