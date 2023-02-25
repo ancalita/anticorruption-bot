@@ -2,7 +2,6 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
-from chatterbot.trainers import ChatterBotCorpusTrainer
 import os
 
 chatbot = ChatBot("Anticorruption",
@@ -15,9 +14,6 @@ trainer = ListTrainer(chatbot)
 for knowledge in os.listdir('base'):
     BotMemory = open('base/' + knowledge, 'r').readlines()
     trainer.train(BotMemory)
-
-# corpus_trainer = ChatterBotCorpusTrainer(chatbot)
-# corpus_trainer.train("chatterbot.corpus.english")
 
 app = Flask(__name__)
 
